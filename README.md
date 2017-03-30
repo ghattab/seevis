@@ -7,7 +7,7 @@ A biomovie is a temporal series of digital microscopy images that is recorded fo
 3. Progeny colour coding (PCC) supports the process of tracing back features to their parents (```Tableau10```).
 
 ![Result](https://2.bp.blogspot.com/-OqaQtKtbZPo/VykvVJEa4YI/AAAAAAAAHv0/JkJ7kpnkfGAshGRJbA0OynaLXkLIURcpwCLcB/s1600/2.png "SEEVIS result for D1")
->*SEEVIS colour codings demonstrated for dataset D1. Figure (a) showcases the last frame of the biomovie, as a binary image after signal enhancement. The three colour codings are displayed in the vis: NCC (b), TCC (c), and PCC (d) respectively.*
+>*SEEVIS colour codings demonstrated for dataset D1. Figure (a) showcases the last frame of the biomovie, as a binary image after signal enhancement. The 3D visualization is displayed as 2D, azimuth = 0°, and elevation = 90° for the three colour codings: NCC (b), TCC (c), and PCC (d), respectively.*
 
 This work was funded by the German-Canadian DFG International Research Training Group GRK 1906/1 and the “Phenotypic Heterogeneity and Sociobiology of Bacterial Populations” DFG SPP1617.
 
