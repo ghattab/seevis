@@ -434,11 +434,13 @@ def display(data, colour, size, pos):
     w.setWindowTitle('SEEVIS - Features 3D scatterplot')
     # Base grid for the 3D space
     g = gl.GLGridItem()
+    g.scale(50,50,50)
     w.addItem(g)
     #
     sp = gl.GLScatterPlotItem(pos=pos, size=size, color=colour, pxMode=False)
     # center the vis to the first seen feature
     sp.translate(-pos[0][0], -pos[0][1], -pos[0][2])
+    w.setCameraPosition(azimuth=-180, elevation=90)
     w.addItem(sp)
 
 
