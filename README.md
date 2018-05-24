@@ -22,9 +22,9 @@ Schlueter, J. - P., McIntosh, M., Hattab, G., Nattkemper, T. W., and Becker, A. 
 For better reproducibility the versions that were used for development are mentioned in parentheses.
 
 * Python (2.7.11)
-* matplotlib (1.5.1+1759)
+* matplotlib (2.2.2)
 * OpenCV (2.4.12)
-* pyqtgraph (0.9.10)
+* pyqtgraph (0.10)
 * trackpy (u'0.3.0rc1')
 * pims (0.2.2)
 * pandas (0.16.2)
