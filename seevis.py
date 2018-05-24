@@ -3,11 +3,9 @@
 
 import argparse
 import arghelper
-from arghelper import ( 
-    inputfile,
-    inputdir,
-    check_range
-)
+from arghelper import inputfile
+from arghelper import inputdir
+from arghelper import check_range
 import os
 import sys
 from functions import *
@@ -27,8 +25,7 @@ def main(argv=None):
     parser = SeevisParser(
         prog='SEEVIS',
         formatter_class=argparse.RawDescriptionHelpFormatter,
-        description='''
-----------------------------------------------
+        description='''----------------------------------------------
 SEEVIS - (S)egmentation-Fr(EE)(VIS)ualisation
 ----------------------------------------------
 Hattab et al. Under the MIT License. ''',
@@ -55,7 +52,6 @@ Usage examples:
 
     try:
         args = parser.parse_args()
-        # print args
         if args.file is None and args.input is None:
             parser.error('--input or --file must be supplied')
 
@@ -63,24 +59,24 @@ Usage examples:
             parser.error('please choose either an input dir. or a csv file')
 
         elif args.file is not None:
-            print parser.description, "\n"
-            print 'Input file', args.file
-            print 'Chosen scheme', args.s
+            print(parser.description, "\n")
+            print("Input file", args.file)
+            print("Chosen scheme", args.s)
             st = time.time()
             d = load_data(args.file)
             elapsed_time(st)
             visualise(d, args.s)
             elapsed_time(st)
-            print "Press Enter to exit"
-            raw_input()
+            print("Press Enter to exit")
+            input()
 
         elif args.input is not None:
             if not args.input.endswith("/"):
                 parser.error('please supply a suitable directory (Usage examples below).')
             else:
-                print parser.description, "\n"
-                print 'Input directory', args.input
-                print 'Chosen scheme', args.s
+                print(parser.description, "\n")
+                print("Input directory", args.input)
+                print("Chosen scheme", args.s)
                 st = time.time()
                 outdir = preprocess(args.input)
                 elapsed_time(st)
@@ -88,10 +84,10 @@ Usage examples:
                 elapsed_time(st)
                 visualise(d, args.s)
                 elapsed_time(st)
-                print "Press Enter to exit"
-                raw_input()
+                print("Press Enter to exit")
+                input()
 
-    except IOError, msg:
+    except IOError as msg:
         parser.error(str(msg))
 
     except KeyboardInterrupt:
