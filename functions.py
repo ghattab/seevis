@@ -5,8 +5,10 @@ import sys
 import time
 import numpy as np
 import pandas as pd
-from pandas import DataFrame
-from pandas import Series
+from pandas import (
+    DataFrame,
+    Series
+)
 import pims
 import trackpy as tp
 import warnings
@@ -14,8 +16,14 @@ import cv2
 import matplotlib.pyplot as plt
 import matplotlib.colors as colors
 import matplotlib.cm as cmx
-from mpl_toolkits.mplot3d import axes3d, Axes3D
-from pyqtgraph.Qt import QtCore, QtGui
+from mpl_toolkits.mplot3d import (
+    axes3d,
+    Axes3D
+)
+from pyqtgraph.Qt import (
+    QtCore, 
+    QtGui
+)
 import pyqtgraph.opengl as gl
 import pyqtgraph as pg
 pg.setConfigOption('useOpenGL', False)
