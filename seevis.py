@@ -3,9 +3,11 @@
 
 import argparse
 import arghelper
-from arghelper import inputfile
-from arghelper import inputdir
-from arghelper import check_range
+from arghelper import ( 
+    inputfile,
+    inputdir,
+    check_range
+)
 import os
 import sys
 from functions import *
