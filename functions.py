@@ -21,12 +21,16 @@ from mpl_toolkits.mplot3d import (
     Axes3D
 )
 from pyqtgraph.Qt import (
-    QtCore, 
+    QtCore,
     QtGui
 )
 import pyqtgraph.opengl as gl
 import pyqtgraph as pg
 pg.setConfigOption('useOpenGL', False)
+
+
+def xrange(x):
+    return iter(range(x))
 
 
 def preprocess(idir):
@@ -36,12 +40,12 @@ def preprocess(idir):
     '''
     # load imgs
     f_red, f_green, f_blue = get_imlist(idir)
-    print "\n%d files found\t" % (len(f_red)*3)
-    print "Loading data..."
+    print("\n%d files found\t" % (len(f_red)*3))
+    print("Loading data...")
     red, size_var = load_img(f_red)
     # 1st frame properties (rows, cols)/(height, width)
     rows, cols, channels = size_var.shape
-    print "Image size ", size_var.shape
+    print("Image size ", size_var.shape)
     green, sv = load_img(f_green)
     blue, sv = load_img(f_blue)
     # enhancing the
@@ -60,7 +64,7 @@ def get_data(outdir):
         Returns the formatted data
     '''
     frames = pims.ImageSequence("../"+outdir+"/*tif")
-    print frames
+    print(frames)
 
     # particle diameter
     diam = 11
@@ -81,15 +85,15 @@ def get_data(outdir):
     t1 = tp.filter_stubs(t, imin)
 
     # Compare the number of particles in the unfiltered and filtered data.
-    print 'Unique number of particles (Before filtering):', t['particle'].nunique()
-    print '(After):', t1['particle'].nunique()
+    print("Unique number of particles (Before filtering):", t['particle'].nunique())
+    print("(After):", t1['particle'].nunique())
 
     # export pandas data frame with filename being current date and time
     timestr = time.strftime("%Y%m%d-%H%M%S")
     data = pd.DataFrame({'x': t1.x, 'y': t1.y, 'z': t1.frame, 'mass': t1.mass, 'size': t1.size, 'ecc': t1.ecc, 'signal': t1.signal, 'ep': t1.ep, 'particle': t1.particle})
 
     file_name = "../features_" + timestr + ".csv"
-    print "Exporting %s" % (file_name)
+    print("Exporting %s" % (file_name))
     data.to_csv(file_name, sep='\t', encoding='utf-8')
     return data
 
@@ -126,7 +130,7 @@ def create_dir(dir):
     '''
     if not os.path.exists(dir):
         os.makedirs(dir)
-    print "Directory '%s' created" % (str(dir))
+    print("Directory '%s' created" % (str(dir)))
 
 
 def get_imlist(path):
@@ -144,12 +148,12 @@ def get_imlist(path):
         f_green = [g for g in flist if g.endswith("c3" + "." + ext)]
         f_blue = [b for b in flist if b.endswith("c4" + "." + ext)]
         if len(f_red) is None or len(f_red) == 0:
-            print "error: image filenames do not comply. Image filenames must be formatted as follows: red, c1.tif; )"
+            print("error: image filenames do not comply. Image filenames must be formatted as follows: red, c1.tif; )")
             sys.exit(1)
         return f_red, f_green, f_blue
     else:
         warnings.filterwarnings("ignore")
-        print 'Directory contains unsupported files. Please refer to the README file)'
+        print("Directory contains unsupported files. Please refer to the README file")
         sys.exit(1)
 
 
@@ -206,7 +210,7 @@ def approach(red, blue, green):
         Returns 8 different variables highlighting the most important steps
     '''
     rgb, fgray, ug, uclahe, ctrast, dblur, mblur, tmask, res, res2 = [], [], [], [], [], [], [], [], [], []
-    print "Preprocessing images..."
+    print("Preprocessing images...")
     # Parameters for manipulating image data
     # maxIntensity depends on dtype of image data
     maxIntensity = 255.0
@@ -252,8 +256,8 @@ def approach(red, blue, green):
         # Threshold signal area
         ret, thresh2 = cv2.threshold(rblur, 225, 255, cv2.THRESH_BINARY)
         # Foreground signal
-        mask = np.ones(red[0].shape[:2], dtype="uint8") * 255
-        tmp_res = cv2.bitwise_or(thresh2, tmp_ssignal, mask=mask)
+        mask = np.ones(red[0].shape[:2], dtype = "uint8") * 255
+        tmp_res = cv2.bitwise_or(thresh2, tmp_ssignal, mask = mask)
         res.append(tmp_res)
 
     return rgb, ug, uclahe, ctrast, dblur, mblur, tmask, res
@@ -275,8 +279,8 @@ def get_cmap(N, map):
     ''' Returns a function that maps each index in 0, 1, ... N-1 to a distinct
         RGB color. Uses a color palette and Mappable scalar
     '''
-    color_norm = colors.Normalize(vmin=0, vmax=N-1)
-    scalar_map = cmx.ScalarMappable(norm=color_norm, cmap=map)
+    color_norm = colors.Normalize(vmin = 0, vmax = N-1)
+    scalar_map = cmx.ScalarMappable(norm = color_norm, cmap = map)
     def map_index_to_rgb_color(index):
         return scalar_map.to_rgba(index)
     return map_index_to_rgb_color
@@ -304,7 +308,7 @@ def nm(n, data):
         col.append(tableau10[i])
     # Cycle the same distinct 30 colors over the n dis particles
     L = []
-    [L.extend(col) for i in xrange(n/N)]
+    [L.extend(col) for i in xrange(n//N)]
     # add the rest to the list to obtain the same n of colors
     L.extend(col[0:n-len(L)])
     # Cycle through colors for all coord. pertaining to each n particles seen ld
@@ -330,7 +334,7 @@ def tm(n, data, pos):
     N = data['z'].nunique()
     cmap = cm = get_cmap(N, 'viridis')
     col = []
-    [col.append(cmap(i)) for i in range(N)]
+    [col.append(cmap(i)) for i in xrange(N)]
     # cycle through N (pos[i][2]) time points/colors for all ld coord.
     L = []
     [L.append(col[pos[i][2].astype(int)]) for i in xrange(n)]
