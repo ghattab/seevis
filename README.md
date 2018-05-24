@@ -7,7 +7,7 @@ A biomovie is a temporal series of digital microscopy images that is recorded fo
 3. Progeny Mapping (PM) supports the process of tracing back features to their parents (```Tableau10```).
 
 ![Result](https://4.bp.blogspot.com/-Ci_DsM8T_l0/WwarzqixsKI/AAAAAAAAIR4/uodBx0e5Ivs7Vroxr_yP48Lc7KMrtrIZwCLcBGAs/s1600/Screen%2BShot%2B2018-05-24%2Bat%2B14.08.21.png "SEEVIS result for D1")
->*SEEVIS colour mappings demonstrated for dataset D1. Screen captures of the 3D visualization is displayed with an azimuth = 0°, an elevation = 90°, anda grid mesh for the three colour mappings: NM (left), TM (middle), and PM (right), respectively.*
+>*SEEVIS colour mappings demonstrated for dataset D1. Screen captures of the 3D visualization is displayed with an azimuth = 0°, an elevation = 90°, and a grid mesh for the three colour mappings: NM (left), TM (middle), and PM (right), respectively.*
 
 ## Funding
 - German-Canadian DFG International Research Training Group GRK 1906/1 
