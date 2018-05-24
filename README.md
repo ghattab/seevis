@@ -16,20 +16,23 @@ A biomovie is a temporal series of digital microscopy images that is recorded fo
 ## Data
 The employed datasets are available under The Open Data Commons Attribution License (ODC-By) v1.0.
 
-The output CSV for dataset D1 is provided: ```data.csv```. It corresponds to the output of the first two steps for registered dataset 1 (Schlueter et al. 2015). The CSV file can be supplied to SEEVIS (see [Usage](https://github.com/ghattab/seevis#usage)).
+The output CSV for dataset D1 is provided: ```data.csv```. It corresponds to the output of the first two steps for registered dataset D1 (Schlueter et al. 2015). The CSV file can be supplied to SEEVIS (see [Usage](https://github.com/ghattab/seevis#usage)).
 
 *Schlueter, J. - P., McIntosh, M., Hattab, G., Nattkemper, T. W., and Becker, A. (2015). Phase Contrast and Fluorescence Bacterial Time-Lapse Microscopy Image Data. Bielefeld University. [doi:10.4119/unibi/2777409](http://doi.org/10.4119/unibi/2777409).*
 
 ## Dependencies
 For better reproducibility the versions that were used for development are mentioned in parentheses.
 
-* Python (2.7.11)
-* matplotlib (1.5.1+1759)
-* OpenCV (2.4.12)
-* pyqtgraph (0.9.10)
-* trackpy (u'0.3.0rc1')
-* pims (0.2.2)
-* pandas (0.16.2)
+* Python (3.6.5)
+* matplotlib (2.2.2)
+* OpenCV (3.4.1)
+* pyqtgraph (0.10.0)
+* trackpy (0.4.1)
+* PIMS (0.4.1)
+* pandas (0.23.0)  
+* scipy (1.1.0)
+* PyOpenGL (3.1.0)
+* Pillow (5.1.0)
 
 ## Usage
 ```bash
