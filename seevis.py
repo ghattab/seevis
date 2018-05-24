@@ -41,14 +41,14 @@ Usage examples:
                         '1.0\n')
 
     parser.add_argument('-i', '--input', default=None, metavar='dir', help='run '
-                        'SEEVIS on the supplied'
+                        'SEEVIS on the supplied '
                         'directory', type=lambda x: arghelper.inputdir(parser, x))
 
     parser.add_argument('-f', '--file', default=None, help='run '
                         'the Visualisation of SEEVIS', type=inputfile)
 
     parser.add_argument('-s', help='run colour scheme'
-                        'ranging from 1 to 3'
+                        'ranging from 1 to 3 '
                         '(default is 1)', nargs="?", default=1, type=check_range)
 
     try:
