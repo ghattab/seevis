@@ -1,10 +1,15 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-import argparse, arghelper
-from arghelper import inputfile, inputdir, check_range
-import os, sys
+import argparse
+import arghelper
+from arghelper import inputfile
+from arghelper import inputdir
+from arghelper import check_range
+import os
+import sys
 from functions import *
+
 
 class SeevisParser(argparse.ArgumentParser):
     def error(self, message):
@@ -24,8 +29,7 @@ def main(argv=None):
 ----------------------------------------------
 SEEVIS - (S)egmentation-Fr(EE)(VIS)ualisation
 ----------------------------------------------
-Copyright (c) 2016 Georges Hattab
-Under the MIT License (MIT) ''',
+Hattab et al. Under the MIT License. ''',
         epilog='''
 Usage examples:
 ./seevis.py -i img_directory/
@@ -33,31 +37,30 @@ Usage examples:
             ''')
 
     # Arguments to be handled
-    parser.add_argument('-v', '--version', action='version', version='%(prog)s 1.0\n')
+    parser.add_argument('-v', '--version', action='version', version='%(prog)s'
+                        '1.0\n')
 
-    parser.add_argument('-i', '--input', default=None, metavar='dir',\
-                        help='run SEEVIS on the supplied directory',\
-                        type=lambda x: arghelper.inputdir(parser, x))
+    parser.add_argument('-i', '--input', default=None, metavar='dir', help='run '
+                        'SEEVIS on the supplied'
+                        'directory', type=lambda x: arghelper.inputdir(parser, x))
 
-    parser.add_argument('-f', '--file', default=None,\
-                        help='run the Visualisation of SEEVIS',
-                        type=inputfile)
+    parser.add_argument('-f', '--file', default=None, help='run '
+                        'the Visualisation of SEEVIS', type=inputfile)
 
-    parser.add_argument('-s', \
-                        help='run colour scheme ranging from 1 to 3 (default is 1)',\
-                        nargs="?", default=1, type=check_range)
-
+    parser.add_argument('-s', help='run colour scheme'
+                        'ranging from 1 to 3'
+                        '(default is 1)', nargs="?", default=1, type=check_range)
 
     try:
         args = parser.parse_args()
         # print args
-        if (args.file == None) and (args.input == None):
-           parser.error('--input or --file must be supplied')
+        if args.file is None and args.input is None:
+            parser.error('--input or --file must be supplied')
 
-        elif (args.file != None) and (args.input != None):
+        elif args.file is not None and args.input is not None:
             parser.error('please choose either an input dir. or a csv file')
 
-        elif args.file != None:
+        elif args.file is not None:
             print parser.description, "\n"
             print 'Input file', args.file
             print 'Chosen scheme', args.s
@@ -69,7 +72,7 @@ Usage examples:
             print "Press Enter to exit"
             raw_input()
 
-        elif args.input != None:
+        elif args.input is not None:
             if not args.input.endswith("/"):
                 parser.error('please supply a suitable directory (Usage examples below).')
             else:
@@ -96,4 +99,3 @@ Usage examples:
 # ------------------------------------------------------------------------------
 if __name__ == "__main__":
     main(sys.argv[1:])
-
