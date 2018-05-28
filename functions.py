@@ -199,7 +199,7 @@ def reshape_xyz(x, y, z, ld):
 
 def approach(red, blue, green):
     """ The SEEVIS implementation of the preprocessing steps
-        Supp. Info. Hattab et al. 2018
+        Supp. Info. Hattab et al. 2018 https://doi.org/10.3389/fbioe.2018.00017
         Args    red, blue, green channels
         Returns 8 different variables highlighting the most important steps
     """
