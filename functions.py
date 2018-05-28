@@ -26,7 +26,7 @@ from pyqtgraph.Qt import (
 )
 import pyqtgraph.opengl as gl
 import pyqtgraph as pg
-pg.setConfigOption('useOpenGL', False)
+pg.setConfigOption("useOpenGL", False)
 
 
 def xrange(x):
@@ -34,10 +34,10 @@ def xrange(x):
 
 
 def preprocess(idir):
-    ''' Loads images then runs the preprocessing part of SEEVIS
+    """ Loads images then runs the preprocessing part of SEEVIS
         idir: path containing the 3 channels (RGB)
         exports the resulting image into the default seevis_output folder
-    '''
+    """
     # load imgs
     f_red, f_green, f_blue = get_imlist(idir)
     print("\n%d files found\t" % (len(f_red)*3))
@@ -60,9 +60,9 @@ def preprocess(idir):
 
 
 def get_data(outdir):
-    ''' Loads the output of the preprocessing steps for feature extraction
+    """ Loads the output of the preprocessing steps for feature extraction
         Returns the formatted data
-    '''
+    """
     frames = pims.ImageSequence("../"+outdir+"/*tif")
     print(frames)
 
@@ -85,28 +85,28 @@ def get_data(outdir):
     t1 = tp.filter_stubs(t, imin)
 
     # Compare the number of particles in the unfiltered and filtered data.
-    print("Unique number of particles (Before filtering):", t['particle'].nunique())
-    print("(After):", t1['particle'].nunique())
+    print("Unique number of particles (Before filtering):", t["particle"].nunique())
+    print("(After):", t1["particle"].nunique())
 
     # export pandas data frame with filename being current date and time
     timestr = time.strftime("%Y%m%d-%H%M%S")
-    data = pd.DataFrame({'x': t1.x, 'y': t1.y, 'z': t1.frame, 'mass': t1.mass, 'size': t1.size, 'ecc': t1.ecc, 'signal': t1.signal, 'ep': t1.ep, 'particle': t1.particle})
+    data = pd.DataFrame({"x": t1.x, "y": t1.y, "z": t1.frame, "mass": t1.mass, "size": t1.size, "ecc": t1.ecc, "signal": t1.signal, "ep": t1.ep, "particle": t1.particle})
 
     file_name = "../features_" + timestr + ".csv"
     print("Exporting %s" % (file_name))
-    data.to_csv(file_name, sep='\t', encoding='utf-8')
+    data.to_csv(file_name, sep="\t", encoding="utf-8")
     return data
 
 
 def visualise(data, s):
-    ''' Visualise one of the 4 schemes included in SEEVIS
+    """ Visualise one of the 4 schemes included in SEEVIS
         Args    the dataframe (see get_data) and s, the supplied scheme (int)
         displays directly the user-requested vis.
-    '''
+    """
     # Prepare the data for a 3D scatter plot
     ld = len(data)
     # n of unique particles
-    n = data['particle'].nunique()
+    n = data["particle"].nunique()
     pos = reshape_xyz(data.x.values, data.y.values, data.z.values, ld)
     size = np.repeat(3, ld)
     # initialise colors based on the user-selected scheme
@@ -126,20 +126,19 @@ def elapsed_time(start_time):
 
 
 def create_dir(dir):
-    ''' Directory creation
-    '''
+    """ Directory creation """
     if not os.path.exists(dir):
         os.makedirs(dir)
-    print("Directory '%s' created" % (str(dir)))
+    print("Directory %s created" % (str(dir)))
 
 
 def get_imlist(path):
-    ''' Returns a list of filenames for all compatible extensions in a directory
+    """ Returns a list of filenames for all compatible extensions in a directory
         Args : path of the directory and the supplied user choice
         Handles dir with i_ext as file extension
         c2, c3, c4 as red, green, blue channels respectively
         Returns the list of files to be treated
-    '''
+    """
     i_ext = tuple([".tif", ".jpg", ".jpeg", ".png"])
     flist = [os.path.join(path, f) for f in os.listdir(path) if f.lower().endswith(i_ext)]
     if len(flist) is not None:
@@ -158,10 +157,10 @@ def get_imlist(path):
 
 
 def load_img(flist):
-    ''' Loads images in a list of arrays
+    """ Loads images in a list of arrays
         Args : list of files
         Returns list of all the ndimage arrays
-    '''
+    """
     imgs = []
     for i in flist:
         # return img as is
@@ -171,15 +170,14 @@ def load_img(flist):
 
 
 def rgb_to_gray(img):
-    ''' Converts an RGB image to grayscale, where each pixel
+    """ Converts an RGB image to grayscale, where each pixel
         now represents the intensity of the original image.
-    '''
+    """
     return cv2.cvtColor(img, cv2.COLOR_RGB2GRAY)
 
 
 def invert(img):
-    ''' Inverts an image
-    '''
+    """ Inverts an image """
     cimg = np.copy(img)
     return cv2.bitwise_not(cimg, cimg)
 
@@ -189,9 +187,9 @@ def ubyte(img):
 
 
 def reshape_xyz(x, y, z, ld):
-    ''' Reshapes coordinates
+    """ Reshapes coordinates
         Into an array( [ [x_i, y_i, z_i ], ..] with i from [0-> n-1]
-    '''
+    """
     pos = []
     for i in range(ld):
         t = list(np.append(np.append(x[i], y[i]), z[i]))
@@ -199,16 +197,12 @@ def reshape_xyz(x, y, z, ld):
     return np.array(pos)
 
 
-def invert(img):
-    cimg = np.copy(img)
-    return cv2.bitwise_not(cimg, cimg)
-
-
 def approach(red, blue, green):
-    ''' The SEEVIS implementation of the preprocessing steps
+    """ The SEEVIS implementation of the preprocessing steps
+        Supp. Info. Hattab et al. 2018
         Args    red, blue, green channels
         Returns 8 different variables highlighting the most important steps
-    '''
+    """
     rgb, fgray, ug, uclahe, ctrast, dblur, mblur, tmask, res, res2 = [], [], [], [], [], [], [], [], [], []
     print("Preprocessing images...")
     # Parameters for manipulating image data
@@ -264,8 +258,8 @@ def approach(red, blue, green):
 
 
 def export(flist, dirs, out):
-    ''' Enumerates elements in dirs and formats the filename depending on flist
-    '''
+    """ Enumerates elements in dirs and formats the filename depending on flist
+    """
     for j in enumerate(dirs):
         # create output dir
         create_dir("../" + j[1])
@@ -276,9 +270,9 @@ def export(flist, dirs, out):
 
 
 def get_cmap(N, map):
-    ''' Returns a function that maps each index in 0, 1, ... N-1 to a distinct
+    """ Returns a function that maps each index in 0, 1, ... N-1 to a distinct
         RGB color. Uses a color palette and Mappable scalar
-    '''
+    """
     color_norm = colors.Normalize(vmin = 0, vmax = N-1)
     scalar_map = cmx.ScalarMappable(norm = color_norm, cmap = map)
     def map_index_to_rgb_color(index):
@@ -287,11 +281,11 @@ def get_cmap(N, map):
 
 
 def nm(n, data):
-    ''' Nominal Mapping using the Tableau 10 palette
+    """ Nominal Mapping using the Tableau 10 palette
         Dissociate neighboring particles colors
         Returns a numpy array of N distinct colors cycled for n particles
         Args    n total unique particles and data, the dataframe
-    '''
+    """
     # Amount of distinct colors to be used
     N = 10
     tableau10 = [(31, 119, 180), (255, 127, 14),
@@ -328,11 +322,11 @@ def nm(n, data):
 
 
 def tm(n, data, pos):
-    ''' color using time axis (data.z)
+    """ color using time axis (data.z)
         cmap is viridis (spectral: black to white)
-    '''
-    N = data['z'].nunique()
-    cmap = cm = get_cmap(N, 'viridis')
+    """
+    N = data["z"].nunique()
+    cmap = cm = get_cmap(N, "viridis")
     col = []
     [col.append(cmap(i)) for i in xrange(N)]
     # cycle through N (pos[i][2]) time points/colors for all ld coord.
@@ -344,28 +338,28 @@ def tm(n, data, pos):
 
 
 def find_missing(integers_list, start=None, limit=None):
-    ''' Given a list of integers and optionally a start and an end
+    """ Given a list of integers and optionally a start and an end
         finds all integers from start to end that are not in the list
-    '''
+    """
     start = start if start is not None else integers_list[0]
     limit = limit if limit is not None else integers_list[-1]
     return [i for i in range(start, limit + 1) if i not in integers_list]
 
 
 def pm(data):
-    ''' Progeny Mapping by coloring progeny's single particles
+    """ Progeny Mapping by coloring progeny"s single particles
         traced back to parent cells
-    '''
+    """
     m = np.unique(data[data.z == np.max(data.z)].particle).astype(int)
     # select all pts pertaining to the list of m particles
-    data1 = data[data['particle'].isin(list(m))]
+    data1 = data[data["particle"].isin(list(m))]
     colors1 = nm(len(m), data1)
     # rest of particles shrinked to a smaller size and gray-colored
     # gray color
     c = np.array([1, 1, 1, .1])
     # get IDs of all missing particles
     o = find_missing(m)
-    data2 = data[data['particle'].isin(list(o))]
+    data2 = data[data["particle"].isin(list(o))]
     colors2 = np.tile(c, (len(data2), 1))
     colors = np.concatenate((colors1, colors2), axis=0)
     f = [data1, data2]
@@ -374,11 +368,11 @@ def pm(data):
 
 
 def mkQApp():
-    ''' Initialise an OpenGL 3D space / GUI for the visualisation
+    """ Initialise an OpenGL 3D space / GUI for the visualisation
         with an optional distance to the view
-    '''
+    """
     global QAPP
-    QtGui.QApplication.setGraphicsSystem('raster')
+    QtGui.QApplication.setGraphicsSystem("raster")
     # work around a variety of bugs in the native graphics system
     inst = QtGui.QApplication.instance()
     if inst is None:
@@ -389,30 +383,29 @@ def mkQApp():
 
 
 def load_data(path):
-    data = pd.read_csv(path, index_col=0, parse_dates=True, sep='\t')
-    data = pd.DataFrame({'x': data.x, 'y': data.y, 'z': data.z, 'mass': data.mass, 'size': data.size, 'data': data.ecc, 'signal': data.signal, 'ep': data.ep, 'particle': data.particle})
+    data = pd.read_csv(path, index_col=0, parse_dates=True, sep="\t")
+    data = pd.DataFrame({"x": data.x, "y": data.y, "z": data.z, "mass": data.mass, "size": data.size, "data": data.ecc, "signal": data.signal, "ep": data.ep, "particle": data.particle})
     return data
 
 
 def display(data, color, size, pos):
-    ''' Displays using pyqtgraph the 3D scatterplot with the preformatted color
+    """ Displays using pyqtgraph the 3D scatterplot with the preformatted color
         Args    data, dataframe
-                pos, features' positions
+                pos, features" positions
                 size of dots in the scatterplot
                 color, the user-specific scheme
-    '''
+    """
     app = pg.mkQApp()
     # Window widget
     w = gl.GLViewWidget()
-    w.opts['distance'] = 1000
+    w.opts["distance"] = 1000
     w.resize(800, 800)
     w.show()
-    w.setWindowTitle('SEEVIS - Features 3D scatterplot')
+    w.setWindowTitle("SeeVIS - Features 3D scatterplot")
     # Base grid for the 3D space
     g = gl.GLGridItem()
     g.scale(50, 50, 50)
     w.addItem(g)
-    #
     sp = gl.GLScatterPlotItem(pos=pos, size=size, color=color, pxMode=False)
     # center the vis to the first seen feature
     sp.translate(-pos[0][0], -pos[0][1], -pos[0][2])
