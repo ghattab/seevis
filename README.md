@@ -21,18 +21,10 @@ The output CSV for dataset D1 is provided: ```data.csv```. It corresponds to the
 *Schlueter, J. - P., McIntosh, M., Hattab, G., Nattkemper, T. W., and Becker, A. (2015). Phase Contrast and Fluorescence Bacterial Time-Lapse Microscopy Image Data. Bielefeld University. [doi:10.4119/unibi/2777409](http://doi.org/10.4119/unibi/2777409).*
 
 ## Dependencies
-For better reproducibility the versions that were used for development are mentioned in parentheses.
-
-* Python (3.6.5)
-* matplotlib (2.2.2)
-* OpenCV (3.4.1)
-* pyqtgraph (0.10.0)
-* trackpy (0.4.1)
-* PIMS (0.4.1)
-* pandas (0.23.0)  
-* scipy (1.1.0)
-* PyOpenGL (3.1.0)
-* Pillow (5.1.0)
+For better reproducibility the versions that were used for development are reported in the ```setup.py``` file and can be installed via:
+```bash
+$ python3 setup.py install
+```
 
 ## Usage
 ```bash
