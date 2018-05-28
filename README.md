@@ -39,9 +39,9 @@ For better reproducibility the versions that were used for development are menti
 # Set file permissions
 $ chmod +x seevis.py 
 
-# Run SEEVIS on a folder containing all image files 
+# Run SeeVIS on a folder containing all image files 
 # Formatted by channel : red, green, blue as c2, c3, c4 respectively for every time point
-$ ./seevis.py -i img_directory/
+$ python3 seevis.py -i img_directory/
 
 # Or on a CSV file containing feature positions
 $ ./seevis.py -f data.csv -s 2
