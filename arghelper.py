@@ -6,9 +6,9 @@ import os
 
 
 def inputfile(path):
-    if not path.endswith('.csv'):
-        raise argparse.ArgumentTypeError('argument '
-                                         'filename must be of type *.csv')
+    if not path.endswith(".csv"):
+        raise argparse.ArgumentTypeError("argument "
+                                         "filename must be of type *.csv")
     return path
 
 
