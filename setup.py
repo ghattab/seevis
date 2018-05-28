@@ -28,7 +28,8 @@ requirements = [
     "pims >= 0.4.1",
     "pandas >= 0.23.0",
     "scipy >= 1.1.0",
-    "Pillow >= 5.1.0"
+    "Pillow >= 5.1.0",
+    "pyopengl >=3.1.0"
 ]
 
 setup(
