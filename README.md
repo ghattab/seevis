@@ -49,8 +49,8 @@ $ ./seevis.py -f data.csv -s 2
 
 The visualization displays a particle in the form of a spot that scales with the view (see `functions.py, line 111`). The spot size can be changed according to user preferences or image modalities. The spot size has been chosen such that the particle trajectory does not contain scattered spots and such that neighboring spots do not lead to visual occlusion.
 
-The preprocessing parameters as well as the particle paradigm is detailed in 
-*Hattab G, Wiesmann V, Becker A, Munzner T, Nattkemper TW. a novel Methodology for characterizing cell subpopulations in automated Time-lapse Microscopy. Frontiers in bioengineering and biotechnology. 2018 Feb 28;6:17. [doi:10.3389/fbioe.2018.00017](https://dx.doi.org/10.3389/fbioe.2018.00017).*
+The preprocessing parameters as well as the particle paradigm are detailed in 
+*Hattab G, Wiesmann V, Becker A, Munzner T, Nattkemper TW. a novel Methodology for characterizing cell subpopulations in automated Time-lapse Microscopy. Frontiers in bioengineering and biotechnology. 2018. [doi:10.3389/fbioe.2018.00017](https://dx.doi.org/10.3389/fbioe.2018.00017).*
 
 
 ## License
