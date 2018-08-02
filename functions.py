@@ -108,7 +108,7 @@ def visualise(data, s):
     # n of unique particles
     n = data["particle"].nunique()
     pos = reshape_xyz(data.x.values, data.y.values, data.z.values, ld)
-    size = np.repeat(3, ld)
+    size = np.repeat(3, ld) # spot size scales with the view 
     # initialise colors based on the user-selected scheme
     if s == 1:
         c = nm(n, data)
