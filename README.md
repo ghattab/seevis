@@ -53,7 +53,7 @@ The preprocessing parameters as well as the particle paradigm are detailed in
 *Hattab G, Wiesmann V, Becker A, Munzner T, Nattkemper TW. A novel Methodology for characterizing cell subpopulations in automated Time-lapse Microscopy. Frontiers in bioengineering and biotechnology. 2018. [doi:10.3389/fbioe.2018.00017](https://dx.doi.org/10.3389/fbioe.2018.00017).*
 
 ## Citation
-If you use this software, please consider citing the following paper: Hattab, G. and Nattkemper, T.W., 2018. SeeVis—3D space-time cube rendering for visualization of microfluidics image data. Bioinformatics.
+If you use this software, please consider citing the following paper: _Hattab, G. and Nattkemper, T.W., 2018. SeeVis—3D space-time cube rendering for visualization of microfluidics image data. Bioinformatics._
 ```
 @Article{hattab18,
    Author="Hattab, G.  and Nattkemper, T. W. ",
