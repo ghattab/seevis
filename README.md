@@ -55,7 +55,7 @@ The preprocessing parameters as well as the particle paradigm are detailed in
 ## Citation
 If you use this software, please consider citing the following paper: _Hattab, G. and Nattkemper, T.W., 2018. SeeVis—3D space-time cube rendering for visualization of microfluidics image data. Bioinformatics._
 ```
-@Article{hattab18,
+@Article{hattab18seevis,
    Author="Hattab, G.  and Nattkemper, T. W. ",
    Title="{{S}ee{V}is - 3{D} space-time cube rendering for visualization of microfluidics image data}",
    Journal="Bioinformatics",
